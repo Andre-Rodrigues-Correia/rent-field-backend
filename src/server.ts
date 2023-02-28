@@ -1,15 +1,14 @@
 import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import router from './router';
 import 'express-async-errors'
 
-const app = express();
+dotenv.config(); //config dotenv
 
-app.use(express.json());
+const app = express(); //create express app
+app.use(express.json(),
+    cors(),
+    router);
 
-app.get('/', (request, response) => {
-    return response.json({ message: 'Hello world' });
-});
-
-
-app.listen(3000, () => {
-    console.log('running in port 3000');
-});
+export default app;
